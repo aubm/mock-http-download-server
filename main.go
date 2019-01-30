@@ -19,6 +19,9 @@ func init() {
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodHead {
+			return
+		}
 		http.ServeFile(w, r, fileToDownload)
 	})
 	log.Print("start http server")
